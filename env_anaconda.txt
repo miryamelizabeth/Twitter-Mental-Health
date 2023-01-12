@@ -1,0 +1,18 @@
+conda create --name experiments_env python=3.8.5
+
+conda install -c conda-forge scikit-learn
+python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+
+conda install -c conda-forge spacy
+python -m spacy download en_core_web_sm
+python -m spacy download es_core_news_sm
+
+pip install nltk
+pip install mlxtend
+pip install pycm==3.0
+pip install pysentimiento
+
+conda install dask
+conda install -c conda-forge dask-ml
+
+conda install -c anaconda py-xgboost
