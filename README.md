@@ -66,6 +66,20 @@ All the parameters are already there, but the paths to the dataset and results d
 * [Code](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/models_binary_DL.py) for Binary models
 * [Code](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/models_multiclass_DL.py) for Multiclass models
 
+### 3) Results
+Once the experiments are completed, the results folder looks like this:
+<p align="center">
+    <img src="https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/images/Imagen2.png" width="800">
+</p>
+
+Each folder corresponds to the attribute to be executed. Three types of files are being stored in each fold: the confusion matrix, the normalized confusion matrix and the result of various metrics (class breakdown and Macro-Average).
+
+As long as the nomenclature is respected, folders can be created manually, however, to save time this [code](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/create_folders.py) is used.
+
+[Here](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/save_and_format_results.py) is the code to process the results. *The directories and the name of the final file, located at the bottom, must be changed.*
+
+In the first part, a CSV file is obtained with all the results grouped by mean and standard deviation of each fold. This contains all the classifiers and metrics. In the second part, the code changes the name of the classifiers, metrics, features... to format the results in excel and make them look nice.
+
 
 
 ## References
@@ -73,6 +87,3 @@ All the parameters are already there, but the paths to the dataset and results d
 For more information, please read: XXX
 
 If you use this data, please cite: XXX
-
-
-
