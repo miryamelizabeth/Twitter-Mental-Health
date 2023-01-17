@@ -1,10 +1,10 @@
 ### enviroment: experiments_env
 
 ## -------------------------------------
-# ANTES DE EJECUTAR...
-# Especificar --> idioma ingles/español
-# Especificar --> n_partitions
-# Cambiar las rutas de los directorios en el main
+# BEFORE EXECUTING...
+# specify --> english/spanish language
+# specify --> n_partitions
+# change directory paths in main
 ## -------------------------------------
 
 import dask.dataframe as ddf
@@ -19,7 +19,7 @@ from pysentimiento.preprocessing import preprocess_tweet
 
 
 # ---------------------------------------
-# CAMBIAR por lo que queramos...
+# CHANGE to the language of your choice (English/Spanish)...
 languageName = 'english'
 languageCode = 'en'
 
@@ -193,14 +193,11 @@ def processText(allText, demojiFlag):
 def cleanProcessDataframe(df):
 	""" Procesar el texto y aplicar todas las técnicas programadas anteriormente, también divide la fecha... """
 
-	df[['day','time']] = df['tweet_created_at'].str.split(' ', expand=True,)
-
-
-	df['clean_tweet'] = processText(df['tweet_text'].values, demojiFlag=False)
+	clean_tweets = processText(df['tweet'].values, demojiFlag=False)
 
 	result1 = []
 	result2 = []
-	for t in df['clean_tweet'].values:
+	for t in clean_tweets:
 		lst1, lst2 = lemmatizeAndPOStagText(t)
 		result1.append(lst1)
 		result2.append(lst2)
@@ -209,11 +206,11 @@ def cleanProcessDataframe(df):
 	df['clean_tweet_lemma_postags'] = result2
 
 
-	df['clean_tweet_nostop'] = df['clean_tweet'].apply(lambda text: removeStopwords(text, languageCode))
+	clean_tweets_nostop = [removeStopwords(text, languageCode) for text in clean_tweets]
 
 	result1 = []
 	result2 = []
-	for t in df['clean_tweet_nostop'].values:
+	for t in clean_tweets_nostop:
 		lst1, lst2 = lemmatizeAndPOStagText(t)
 		result1.append(lst1)
 		result2.append(lst2)
@@ -222,8 +219,6 @@ def cleanProcessDataframe(df):
 	df['clean_tweet_nostop_lemma'] = result1
 	df['clean_tweet_nostop_lemma_postags'] = result2
 
-
-	df['clean_description'] = processText(df['user_description'].values, demojiFlag=False)
 
 	return df
 
@@ -240,10 +235,10 @@ def convertText(value):
 # -----------------------------------------------------------------
 if __name__ == '__main__':
 
-	# timelineDirectory tiene todos los archivos descargados por usuario
-	timelineDirectory = r'Timelines'
-	# aquí se guardan los archivos limpios
-	cleanUsersDirectory = r'Clean_users'
+	# timelineDirectory has all files downloaded by user
+	timelineDirectory = r'Twitter_English\Timeline_users\Adhd_eng'
+	# clean files are stored here
+	cleanUsersDirectory = r'Twitter_English\Clean_users\Adhd_eng'
 
 
 	print(f'*** {timelineDirectory} ***')
@@ -253,45 +248,33 @@ if __name__ == '__main__':
 
 
 	# iterar sobre c/usuario
-	for user in usuarios[:len(usuarios)]:
+	for count, user in enumerate(usuarios):
 
 		print(f'\n*** {user}***\n')
 		print(f'{datetime.now().strftime("%d-%m-%Y %H:%M:%S")}')
 		
 		print('Start...')
-		count = 0
 
 		start_time = time.time()
 
 		df = pd.read_csv(os.path.join(timelineDirectory, user), low_memory=True,
-						usecols=['tweet_id', 'tweet_created_at', 'tweet_lang', 'tweet_text', 'tweet_source',
-						'tweet_favorited', 'tweet_retweeted', 'tweet_favorite_count', 'tweet_retweet_count',
-						'tweet_hashtags', 'tweet_user_mentions',
-						'user_id', 'user_name', 'user_screen_name', 'user_description', 'user_location',
-						'user_followers_count', 'user_friends_count', 'user_listed_count', 'user_favourites_count', 'user_statuses_count'],
-						converters={'tweet_text': convertText, 'tweet_favorite_count': convertNum,
-						'tweet_retweet_count': convertNum, 'user_description': convertText},
+						converters={'tweet': convertText, 'tweet_favorite_count': convertNum,
+						'tweet_retweet_count': convertNum},
 						dtype={'tweet_id': str, 'user_id': str}
 						)
-
 
 		# The empty DataFrame that you provide doesn't have the correct column names.
 		# You don't provide any columns in your metadata, but your output does have them.
 		# This is the source of your error.
 		# The meta value should match the column names and dtypes of your expected output.
-		# ... es por eso que se crean columnas vacías
-
-		df[['day','time']] = ''
+		# ... that is why empty columns are created
 		
-		df['clean_tweet'] = ''
+
 		df['clean_tweet_lemma'] = ''
 		df['clean_tweet_lemma_postags'] = ''
 
-		df['clean_tweet_nostop'] = ''
 		df['clean_tweet_nostop_lemma'] = ''
 		df['clean_tweet_nostop_lemma_postags'] = ''
-
-		df['clean_description'] = ''
 
 
 		dask_dataframe = ddf.from_pandas(df, npartitions=n_partitions)
@@ -301,20 +284,17 @@ if __name__ == '__main__':
 		df = result.compute()
 
 		# Organizar columnas
-		cleanData = df[['tweet_id', 'day','time', 'tweet_lang',
-						'tweet_text', 'clean_tweet',
+		cleanData = df[['class', 'tweet_id', 'day','time',
+						'tweet',
 						'clean_tweet_lemma', 'clean_tweet_lemma_postags',
- 						'clean_tweet_nostop', 'clean_tweet_nostop_lemma', 'clean_tweet_nostop_lemma_postags',
-						'tweet_favorited', 'tweet_retweeted',
-						'tweet_favorite_count', 'tweet_retweet_count', 'tweet_hashtags',
-						'tweet_user_mentions', 'tweet_source',
-						'user_id', 'user_name', 'user_screen_name',
-						'user_description', 'clean_description',
-						'user_location',
-						'user_followers_count', 'user_friends_count', 'user_listed_count', 'user_favourites_count', 'user_statuses_count']]
+ 						'clean_tweet_nostop_lemma', 'clean_tweet_nostop_lemma_postags',
+						'tweet_favorite_count', 'tweet_retweet_count',
+						'tweet_source',
+						'user_id',
+						'user_followers_count', 'user_friends_count', 'user_listed_count', 'user_statuses_count']]
 
 
-		cleanData = cleanData[cleanData['clean_tweet'] != ''] # más rapido que remove
+		cleanData = cleanData[cleanData['clean_tweet_lemma'] != ''] # más rapido que remove
 
 		print(cleanData.shape)
 
@@ -324,6 +304,5 @@ if __name__ == '__main__':
 		end_time = time.time()
 		print(f'{(end_time - start_time) / 60.0}')
 
-		count += 1
-		if count % 20 == 0:
-			print(f'Processing {count}, {datetime.now().strftime("%d-%m-%Y %H:%M:%S")}')
+		if (count + 1) % 20 == 0:
+			print(f'Processing {count}/{len(usuarios)}, {datetime.now().strftime("%d-%m-%Y %H:%M:%S")}')
