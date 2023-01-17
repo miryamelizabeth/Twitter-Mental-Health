@@ -16,6 +16,7 @@ This repository contains the materials related to the article X.
 * [Tweepy](https://www.tweepy.org/)
 * [Pycm](https://www.pycm.io/)
 
+[Here](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/env_anaconda.txt) is the anancoda environment with these libraries to do everything that follows.
 
 
 ## References
