@@ -51,8 +51,8 @@ Each instance of the dataset is the complete timeline of the user with his/her c
 
 ### 2) Machine learning models
 The paths to the dataset and results directories must be changed, as well as the language (English/Spanish).
-* [Code]() for Binary models
-* [Code]() for Multiclass models
+* [Code](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/models_binary_ML.py) for Binary models
+* [Code](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/models_multiclass_ML.py) for Multiclass models
 
 The parameters of `max_features`,`n_topics` and those of the classifiers are already there.
 
@@ -63,8 +63,8 @@ The embeddings files should be in an `Embeddings_ENG\Embeddings_ESP` (depending 
 * `glove-crawl-300d.txt` → https://nlp.stanford.edu/data/glove.42B.300d.zip
 
 All the parameters are already there, but the paths to the dataset and results directories must be changed, as well as the language (English/Spanish).
-* [Code]() for Binary models
-* [Code]() for Multiclass models
+* [Code](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/models_binary_DL.py) for Binary models
+* [Code](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/models_multiclass_DL.py) for Multiclass models
 
 
 
