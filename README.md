@@ -18,7 +18,9 @@ This repository contains the materials related to the article X.
 
 [Here](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/env_anaconda.txt) is the anancoda environment with these libraries to do everything that follows.
 
+## Dataset
 
+The Twitter dataset for mental disorder detection is available for download through the [IEEEDataPort](https://ieee-dataport.org/documents/twitter-dataset-mental-disorders-detection) platform.
 
 ## Models
 
@@ -86,4 +88,15 @@ In the first part, a CSV file is obtained with all the results grouped by mean a
 
 For more information, please read: XXX
 
-If you use this data, please cite: XXX
+If you use this data, please cite:
+```
+@MISC {dataset-twitter-mental-health,
+    author    = "Villa-Pérez, Miryam Elizabeth",
+    title     = "Twitter Dataset for Mental Disorders Detection",
+    month     = "feb",
+    year      = "2023",
+    doi       = "10.21227/6pxp-4t91",
+    url       = "https://dx.doi.org/10.21227/6pxp-4t91",
+    publisher = "IEEE Dataport"
+}
+```
