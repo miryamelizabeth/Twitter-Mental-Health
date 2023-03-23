@@ -1,5 +1,5 @@
 # Twitter-Mental-Health
-This repository contains the materials related to the article X.
+This repository contains the materials related to the article "Extracting Mental Health Indicators from English and Spanish Social Media: A Machine Learning Approach".
 
 
 
