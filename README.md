@@ -6,15 +6,15 @@ This repository contains the materials related to the article "Extracting Mental
 ## Requirements
 
 * [Anaconda](https://www.anaconda.com/products/distribution)
-* [Python 3](https://www.python.org/downloads/)
-* [Scikit-learn](https://scikit-learn.org/)
-* [Pandas](https://pandas.pydata.org/)
-* [Numpy](https://numpy.org/)
+* [Python 3](https://www.python.org/downloads/) = 3.8.5
+* [Scikit-learn](https://scikit-learn.org/) = 1.02
+* [Pandas](https://pandas.pydata.org/) = 1.4.2
+* [Numpy](https://numpy.org/) = 1.21.5
 * [Dask](https://www.dask.org/)
 * [Pysentimiento](https://github.com/pysentimiento/pysentimiento)
-* [Spacy](https://spacy.io/)
+* [Spacy](https://spacy.io/) = 3.3.0
 * [Tweepy](https://www.tweepy.org/)
-* [Pycm](https://www.pycm.io/)
+* [Pycm](https://www.pycm.io/) = 3.0
 
 [Here](https://github.com/miryamelizabeth/Twitter-Mental-Health/blob/main/env_anaconda.txt) is the anancoda environment with these libraries to do everything that follows.
 
