@@ -86,12 +86,14 @@ In the first part, a CSV file is obtained with all the results grouped by mean a
 
 ## References
 
-For more information, please read: M. E. Villa-Pérez, L. A. Trejo, M. B. Moin and E. Stroulia, "Extracting Mental Health Indicators from English and Spanish Social Media: A Machine Learning Approach," in IEEE Access, doi: 10.1109/ACCESS.2023.3332289.
+For more information, please read:
+
+M. E. Villa-Pérez, L. A. Trejo, M. B. Moin and E. Stroulia, "Extracting Mental Health Indicators from English and Spanish Social Media: A Machine Learning Approach," in IEEE Access, doi: 10.1109/ACCESS.2023.3332289.
 
 If you use this data, please cite:
 ```
 @MISC {dataset-twitter-mental-health,
-    author    = "Villa-Pérez, Miryam Elizabeth",
+    author    = "Villa-Pérez, Miryam Elizabeth and Luis A. Trejo",
     title     = "Twitter Dataset for Mental Disorders Detection",
     month     = "feb",
     year      = "2023",
