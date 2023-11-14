@@ -101,5 +101,4 @@ If you use this data, please cite:
     url       = "https://dx.doi.org/10.21227/6pxp-4t91",
     publisher = "IEEE Dataport"
 }
-
 ```
